@@ -1,0 +1,91 @@
+<div style="width:100%; margin: auto; font-size: 16px; line-height: 24px; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #555; ">
+  <!-- <table style="width: 100%;padding-left: -25px;padding-top: 3px; border-collapse: collapse;">
+                    <tr>
+                      <th style="padding-left:15px;  text-align:center;">
+                        <span *ngIf="practicedetails.logo">
+                            <img src="{{practicedetails.logo}}" alt="logo" width="200" height="150">
+                        </span><br>
+                        {{practicedetails.name}}<br>
+                        <span ><h1>Prescription&nbsp;Rx</h1></span>
+                      </th>
+                    </tr>
+                  </table> -->
+  <br>
+  <table style="margin-left: 2%;width: 96%;border-collapse: collapse;">
+    <tr>
+      <th style="width:80%;text-align: left;">
+        {{practice_details.name}}
+        <br>
+        <span>
+          <h1>Prescription&nbsp;Rx
+            <h1>
+        </span>
+      </th>
+      <th style="text-align:center;" style="width:20%;">
+        {{#if practice_details.logo}}
+        <img src={{practice_details.logo}} alt="logo" style="display: block;max-width: 100%;height: auto;"> {{/if}}
+      </th>
+    </tr>
+  </table>
+
+  <br>
+  <hr>
+  <br>
+
+  <table style="margin-left: 2%;width: 96%;border-collapse: collapse;">
+    <tr>
+      <th style=" border: none;text-align: left;border-collapse: collapse;">Patient Name</th>
+      <th style=" border: none;text-align: left;border-collapse: collapse;">Breed</th>
+      <th style=" border: none;text-align: left;border-collapse: collapse;">Gender</th>
+      <th style=" border: none;text-align: left;border-collapse: collapse;">Date</th>
+    </tr>
+    <tr>
+      <td>{{petname}} | {{patientage}}</td>
+      <td>{{patient_details.breed}}</td>
+      <td>{{patient_details.sex}}</td>
+      <td>{{date}}</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table style="margin-left: 2%;width: 96%; border-bottom:#eee 1px solid;border-collapse: collapse;" cellpadding="0" cellspacing="0">
+    <tr>
+      <th style="word-break: break-all;border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">Medicine</th>
+      <th style="word-break: break-all;border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">Dosage</th>
+      <th style="word-break: break-all;border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">Frequency</th>
+      <th style="word-break: break-all;border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">Duration</th>
+      <th style="word-break: break-all;border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">Instruction</th>
+    </tr>
+    {{#each meds}}
+    <tr>
+      <td style="word-break: break-all;padding: 5px 5px;border: #eee 1px solid;">{{med_name}}</td>
+      <td style="word-break: break-all;padding: 5px 5px;border: #eee 1px solid;">{{quan}} {{quan_type}}</td>
+      <td style="word-break: break-all;padding: 5px 5px;border: #eee 1px solid;">{{freq}}
+        <br>{{#if unitrep}}{{unitrep}}{{/if}}
+      </td>
+      <td style="word-break: break-all;padding: 5px 5px;border: #eee 1px solid;">{{dur}} {{dur_type}}</td>
+      <td style="word-break: break-all;padding: 5px 5px;border: #eee 1px solid;">{{instruction}}</td>
+    </tr>
+    {{/each}}
+  </table>
+  <br>
+  <br>
+  <div style="float:right;margin-right:2%;">For {{practicename}}</div>
+  <br>
+  <div style="float:right;margin-right:2%;">{{doctorname}}</div>
+  <br>
+  <br>
+  <br>
+  <!-- <div style="position:absolute;text-align:center;width: 100%; margin-bottom:0px; bottom:0px;"> -->
+  <hr>
+  <p style="text-align:center;">{{practice_address.address}}, {{practice_address.city}} - {{practice_address.pincode}}</p>
+  <table style="margin-left: 2%;width: 96%; float:left; padding-left: -25px;">
+    <tr>
+      <td style=" text-align:center;">
+        <!-- <span class="anim">Anim</span><span class="app">App</span> -->
+        <img src="https://s3.ap-south-1.amazonaws.com/animappcareimages/AnimApp_Light.png" style="" alt="logo" width="150" height="100">
+      </td>
+    </tr>
+  </table>
+  <!-- </div> -->
+</div>

@@ -1,0 +1,93 @@
+<div
+  style="width:100%; margin: auto; font-size: 16px; line-height: 24px; font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; color: #555; ">
+  <br>
+  <table style="margin-left: 2%;width: 96%;border-collapse: collapse;">
+    <tr>
+      <th style="width:80%;text-align: left;">
+        {{practice_details.name}}
+        <br>
+        <span>
+          <h1>LAB RESULTS<h1>
+        </span>
+      </th>
+      <th style="text-align:center;" style="width:20%;">
+        {{#if practice_details.logo}}
+        <img src={{practice_details.logo}} alt="logo" style="display: block;max-width: 100%;height: auto;"> {{/if}}
+      </th>
+    </tr>
+  </table>
+  <br>
+  <hr>
+  <br>
+
+  <table style="margin-left: 2%;width: 96%;border-collapse: collapse;">
+    <tr>
+      <th colspan="2" style=" border: none;text-align: left;border-collapse: collapse;">Parent</th>
+      <th colspan="2" style=" border: none;text-align: left;border-collapse: collapse;">Pet Name</th>
+    </tr>
+    <tr>
+      <td colspan="2">{{petparentname}}</td>
+      <td colspan="2">{{petname}}</td>
+    </tr>
+    <tr>
+      <th colspan="2" style=" border: none;text-align: left;border-collapse: collapse;">Test</th>
+      <th style=" border: none;text-align: left;border-collapse: collapse;">Age</th>
+      <th style=" border: none;text-align: left;border-collapse: collapse;">Sex</th>
+    </tr>
+    <tr>
+      <td colspan="2">{{testname}}</td>
+      <td style=" border: none;text-align: left;border-collapse: collapse;">{{patient_details.show_dob}}</td>
+      <td style=" border: none;text-align: left;border-collapse: collapse;">{{patient_details.sex}}</td>
+    </tr>
+    <tr>
+      <th colspan="2" style=" border: none;text-align: left;border-collapse: collapse;">Date</th>
+      <th style=" border: none;text-align: left;border-collapse: collapse;">Species</th>
+      <th style=" border: none;text-align: left;border-collapse: collapse;">Breed</th>
+    </tr>
+    <tr>
+      <td colspan="2">{{date}}</td>
+      <td style=" border: none;text-align: left;border-collapse: collapse;">{{patient_details.species}}</td>
+      <td style=" border: none;text-align: left;border-collapse: collapse;">{{patient_details.breed}}</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  {{!-- <table style="margin-left: 2%;width: 96%; border-bottom:#eee 1px solid;border-collapse: collapse;" cellpadding="0" cellspacing="0">
+    <tr>
+      <th style="word-break: break-all;border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">TEST</th>
+      <th style="word-break: break-all;border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">RESULT</th>
+      <th style="word-break: break-all;border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">IDEAL RANGE</th>
+      <th style="word-break: break-all;border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">NOTES</th>
+    </tr>
+     {{#each testlist}}
+    <tr>
+      <td style="word-break: break-all;padding: 5px 5px;border: #eee 1px solid;">{{name}}</td>
+      <td style="word-break: break-all;padding: 5px 5px;border: #eee 1px solid;">{{result}}{{unit}}</td>
+      <td style="word-break: break-all;padding: 5px 5px;border: #eee 1px solid;">{{range}}</td>
+      <td style="word-break: break-all;padding: 5px 5px;border: #eee 1px solid;">{{result_notes}}</td>
+    </tr>
+    {{/each}}
+  </table> --}}
+  <table style="margin-left: 2%;width: 96%; border-bottom:#eee 1px solid;border-collapse: collapse;" cellpadding="0" cellspacing="0">
+    <tr>
+      <th style="border: none;text-align: center;border-collapse: collapse; margin:auto; display:block;">
+		  <img src={{labImage}} height="500" width="500">
+		</th>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <br>
+  <br>
+  <hr>
+  <p style="text-align:center;">{{practice_address.address}}, {{practice_address.city}} - {{practice_address.pincode}}
+  </p>
+  <table style="margin-left: 2%;width: 96%; float:left; padding-left: -25px;">
+    <tr>
+      <td style=" text-align:center;">
+        <img src="https://s3.ap-south-1.amazonaws.com/animappcareimages/AnimApp_Light.png" style="" alt="logo"
+          width="150" height="100">
+      </td>
+    </tr>
+  </table>
+</div>

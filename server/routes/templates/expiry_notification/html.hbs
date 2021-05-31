@@ -1,0 +1,33 @@
+<h2>Hello Dr.&nbsp;{{admin_name}},</h2>
+
+<h4>The following batch is scheduled to expire in {{month}}.
+</h4>
+
+          
+          <table style="margin-left: 2%;width: 96%;border-bottom:#eee 1px solid;border-collapse: collapse;" cellpadding="0" cellspacing="0">                   
+            <tr>	
+            <th style="border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;"> Added On</th>													
+            <th style="border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">Item Name</th>
+            <th style="border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">Batch Number</th>	
+            <th style="border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">Expiry Date</th>														 
+              <th style="border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">Initial Stocklevel</th>
+               <th style="border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">Current Stocklevel</th>
+                
+                 {{!-- <th style="border: #eee 1px solid;padding: 5px 5px; text-align:left;border-collapse: collapse;">Current Stocklevel</th> --}}
+            </tr>
+           
+            <tr>
+                 <td style="padding: 5px 5px;border: #eee 1px solid;">  {{date}}</td>
+                <td style="padding: 5px 5px;border: #eee 1px solid;">
+                 {{stock_name}}
+                </td>
+                <td style="padding: 5px 5px;border: #eee 1px solid;"> {{batch_number}}</td>
+                 <td style="padding: 5px 5px;border: #eee 1px solid;">  {{expiry_date}}</td>
+                <td style="padding: 5px 5px;border: #eee 1px solid;">  {{initial_stocklevel}}</td>
+                 <td style="padding: 5px 5px;border: #eee 1px solid;">  {{current_stocklevel}}</td>
+                 {{!-- <td style="padding: 5px 5px;border: #eee 1px solid;">  {{expiry_date}}</td> --}}
+                
+            </tr>               
+          </table>
+          <br>
+     
