@@ -9,6 +9,24 @@ const cors = require('cors')
 router.use(cors())
 router.all('*', cors());
 
+let aws = require("@aws-sdk/client-ses");
+const AWS = require('aws-sdk');
+const multerS3 = require('multer-s3');
+const multer = require('multer');
+
+
+const BUCKET_NAME = 'prescriptionpdf-072325946506';
+const IAM_USER_KEY = 'AKIARBVXWLSFCDRA6XCV';
+const IAM_USER_SECRET = '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';
+var options = {
+    phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs",
+}
+process.env.AWS_ACCESS_KEY_ID = 'AKIARBVXWLSFCDRA6XCV'
+process.env.AWS_SECRET_ACCESS_KEY = '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'
+
+// var sesTransport = require('nodemailer-ses-transport');
+// var smtpPassword = require('aws-smtp-credentials');
+
 const nodemailer = require('nodemailer'),
     path = require('path');
 EmailTemplate = require('email-templates').EmailTemplate,
@@ -19,6 +37,7 @@ const https = require('https');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 // const cron = require("node-cron");
+let pdf = require('html-pdf');
 
 const soap = require('./soap');
 const tailapp = require('./tailapp');
@@ -33,6 +52,12 @@ const resultupload = require('./resultupload');
 const subscription = require('./subscription');
 
 var CronJob = require('cron').CronJob;
+
+var s3 = new AWS.S3({
+    accessKeyId: IAM_USER_KEY,
+    secretAccessKey: IAM_USER_SECRET,
+});
+
 var job = new CronJob({
     cronTime: '00 55 08 * * 0-6',
     onTick: function () {
@@ -3111,45 +3136,93 @@ router.post("/mailnotify", (req, res) => {
     let query = db.query(sql, req.body.practice_id, (err, result) => {
         let sqlpatient = `SELECT * FROM patient WHERE patient_id=?`;
         let query = db.query(sqlpatient, req.body.patient_id, (err, resultpatient) => {
-            let sqlpracadd = `SELECT * FROM practice_address WHERE practice_id=?`;
-            let query = db.query(sqlpracadd, req.body.practice_id, (err, resultpracadd) => {
-                let users = [
-                    {
-                        petname: req.body.petname,
-                        petparentname: req.body.petparentname,
-                        practicename: req.body.practicename,
-                        doctorname: req.body.doctorname,
-                        date: req.body.date,
-                        meds: prescription_meds,
-                        email: req.body.email,
-                        patientage: req.body.patientage,
-                        practice_details: result[0],
-                        patient_details: resultpatient[0],
-                        practice_address: resultpracadd[0]
-                    }
-                ];
-                console.log('Prescription print sent');
-                loadTemplate('prescription', users).then((results) => {
-                    return Promise.all(results.map((result) => {
-                        sendEmail({
-                            to: result.context.email,
-                            from: '"AnimApp" <care@animapp.in>',
-                            subject: result.email.subject,
-                            html: result.email.html,
-                            text: result.email.text,
+            let sqlDocReg = `SELECT * FROM user WHERE name=?`
+            const doc = req.body.doctorname.substring(4)
+            let query = db.query(sqlDocReg, doc, (err, doctornInfo) => {
+                console.log(doctornInfo)
+                let sqlpracadd = `SELECT * FROM practice_address WHERE practice_id=?`;
+
+                let query = db.query(sqlpracadd, req.body.practice_id, (err, resultpracadd) => {
+                    let users = [
+                        {
+                            petname: req.body.petname,
+                            petparentname: req.body.petparentname,
+                            practicename: req.body.practicename,
+                            doctorname: req.body.doctorname,
+                            weight:req.body.weight,
+                            date: req.body.date,
+                            meds: prescription_meds,
+                            email: req.body.email,
+                            patientage: req.body.patientage,
+                            practice_details: result[0],
+                            patient_details: resultpatient[0],
+                            practice_address: resultpracadd[0],
+                            breed: req.body.breed,
+                            species: req.body.species,
+                            complaints: req.body.complaints,
+                            duration: req.body.duration,
+                            diagnosis: req.body.diagnosis ? req.body.diagnosis[0] : null,
+                            plan: req.body.treatmentPlan,
+                            procedure: req.body.procedure ? req.body.procedure[0] : null,
+                            labOrders: req.body.labOrders ? req.body.labOrders[0] : null,
+                            imagingOrder: req.body.imagingOrder ? req.body.imagingOrder[0] : null,
+                            inventoryOrders: req.body.inventoryOrders ? req.body.inventoryOrders[0] : null,
+                            color: 'white',
+                            regNumber: doctornInfo[0].registration_no,
+                            additionalNotes:req.body.additionalNotes
+                        }
+                    ];
+                    console.log('Prescription print sent');
+
+                    loadTemplate('prescription_pdf_new', users).then((results) => {
+                        console.log('creating pdf')
+                        results.map((result) => {
+                            pdf.create(result.email.html, options).toBuffer((err, buffer) => {
+                                // upload to s3
+                                console.log(users[0].petparentname)
+                                s3.putObject({
+                                    Bucket: BUCKET_NAME,
+                                    Key: 'prescription/' + users[0].petparentname + '-' + 'prescription.pdf',
+                                    Body: buffer,
+                                    ACL: 'public-read',
+                                }, function (err, data) {
+                                    if (err) {
+                                        console.log('error uploading file ' + err)
+                                    } else {
+                                        console.log('file uploaded successfully')
+                                        loadTemplate('prescription_new', users).then((results) => {
+                                            console.log('sending email')
+                                            return Promise.all(results.map((result) => {
+                                                sendEmail({
+                                                    to: result.context.email,
+                                                    from: 'alerts@supertails.com',
+                                                    subject: result.email.subject,
+                                                    html: result.email.html,
+                                                    text: result.email.text,
+                                                    attachments: [
+                                                        {
+                                                            filename: 'Prescription.pdf',
+                                                            path: `https://prescriptionpdf-072325946506.s3.ap-south-1.amazonaws.com/prescription/${users[0].petparentname}-prescription.pdf`,
+                                                            contentType: 'application/pdf'
+                                                        },
+                                                    ]
+                                                })
+                                            }));
+                                        }).then(() => {
+                                            res.json({
+                                                success: true
+                                            });
+                                        });
+                                    }
+                                })
+                            })
                         })
-                    }));
-                }).then(() => {
-                    res.json({
-                        success: true
-                    });
+                    })
                 });
-            });
+            })
         });
     });
 });
-
-
 
 router.post("/mailinvoice", (req, res) => {
 
@@ -3773,7 +3846,7 @@ router.get("/getemailparent/:id", (req, res) => {
         if (err) throw err;
         res.json({
             success: true,
-            email: result[0].email_id
+            email: result.length ? result[0].email_id : ''
         })
     });
 })

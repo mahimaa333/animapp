@@ -29,12 +29,22 @@
 
 module.exports = {
  
-  host: "animappcareprod.ccmcxl8n6bhn.ap-south-1.rds.amazonaws.com",
+  // host: "animappcareprod.ccmcxl8n6bhn.ap-south-1.rds.amazonaws.com",
+  // user: "animappcareprod",
+  // password: "4nim4ppc4r3",
+  // database: "animappcareprod",
+  // // apihost: "https://carewebappstaging.herokuapp.com",
+  
+
+  // secret: "animappcare"
+
+  host: "supertails.ccmcxl8n6bhn.ap-south-1.rds.amazonaws.com",
   user: "animappcareprod",
   password: "4nim4ppc4r3",
   database: "animappcareprod",
   // apihost: "https://carewebappstaging.herokuapp.com",
-  
+
 
   secret: "animappcare"
+
 };

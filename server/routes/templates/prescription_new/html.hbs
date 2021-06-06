@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{ email_title }}</title>
+    <meta name="color-scheme" content="only">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="/assets/notifications/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <style>
+      a {
+        text-decoration: none;
+      }
+      .headline-body{
+        align: center ;
+        width : 543px ;
+        text-align: center ;
+      }
+      *{
+        font-family : Noto Sans, sans-serif ;
+      }
+      span.contact_details{
+        font-family: Noto Sans, sans-serif ;
+        font-family: Noto Sans;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 25px;
+        letter-spacing: 0.20000000298023224px;
+        color:black;
+      }
+      .contact{
+        font-family: Noto Sans, sans-serif;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 25px;
+        letter-spacing: 0.20000000298023224px;
+        text-align: center;
+        color: white ;
+      }
+      .body{
+        font-family: Noto Sans, sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 25px;
+        letter-spacing: 0.20000000298023224px;
+        text-align: center;
+        color: black ;
+      }
+    </style>
+  </head>
+
+  <body>
+    <center style="width:100%;">
+      <div style="background-color:#ffffff; max-width:600px; margin:0 auto; border:1px solid #beb7b7">
+        <table align="center" cellspacing="0" cellpadding="0" width="100%" style="margin:auto">
+          <tr style="width:100%">
+            <td>
+              <img src="https://cdn.shopify.com/s/files/1/0565/8021/0861/files/prescription_emailer_header.png?v=1622096595" width="600px">
+            </td>
+          </tr>
+          <tr style="width:100%">
+            <td>
+              <table class="body" cellspacing="0" cellpadding="0" width="494px" style="margin:auto; margin-top:24px; margin-bottom:50px;">
+                <tr>
+                  <td>
+                    Hi {{petparentname}},<br><br>
+                    We hope {{petname}} is feeling better. {{doctorname}} loved speaking to you during the consultation and has shared the prescription in line with your discussion.<br><br>
+                    Please find the prescription attached with this email.<br><br>
+                    We’d love to see your little mutt healthy and happy, please share your experience with us at your convenience. :)<br><br><br>
+                    Take care,<br>
+                    Team Supertails
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="contact" style="background-color:#157591; text-align:center; padding:22px 0;">
+                18005723575 | support@supertails.com
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </center>
+  </body>
+</html>

@@ -19,6 +19,11 @@ var helmet = require('helmet');
 
 const socket = require('socket.io');
 
+const SENDGRID_API_KEY = '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';
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(SENDGRID_API_KEY);
+
+
 app.use(cors());
 app.use(compression());
 app.use(helmet());
@@ -77,7 +82,8 @@ let transporter = nodemailer.createTransport({
 
 
 function sendEmail(obj){
-  return transporter.sendMail(obj);
+  // return transporter.sendMail(obj);
+  return sgMail.send(obj);
 }
 
 function loadTemplate (templateName , contexts) {

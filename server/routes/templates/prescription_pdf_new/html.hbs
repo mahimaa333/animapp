@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{ email_title }}</title>
+    <meta name="color-scheme" content="only">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="/assets/notifications/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body style="margin: 0;padding: 0;">
+    <div>
+        <table cellspacing="0" cellpadding="0" width="600" style="width: 600px;margin:0 auto;background-color: #fff;">
+            <tr>
+                <td>
+                    <div style="background-color:#157591; height:39.31px; width:100%; margin:0 auto;">
+                        <table class="header" cellspacing="0" cellpadding="0" width="100%" style="margin:auto">
+                            <tr>
+                                <td style="padding: 16px 0 16px 30px;font-family: Noto Sans, sans-serif;font-size: 12px;font-style: normal;font-weight: 700;line-height: 8px;letter-spacing: 0.049753934144973755px;text-align: left;color: white;">Prescription (Rx)</td>
+                                <td style="text-align:right; padding-right:20px;"><img src="https://cdn.shopify.com/s/files/1/0565/8021/0861/files/prescription_logo.png?v=1622112825" width="69px"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 30px;">
+                    <table class="patient-details" width="100%">
+                        <tr>
+                            <th style="padding-bottom: 15px;font-family: Noto Sans, sans-serif;font-size: 12px;font-style: normal;font-weight: 400;text-align: left;color: #000;letter-spacing: 0.0497539px;">Patient Name</th>
+                            <th style="padding-bottom: 15px;font-family: Noto Sans, sans-serif;font-size: 12px;font-style: normal;font-weight: 400;text-align: left;color: #000;letter-spacing: 0.0497539px;">Pet Parent Name</th>
+                            <th style="padding-bottom: 15px;font-family: Noto Sans, sans-serif;font-size: 12px;font-style: normal;font-weight: 400;text-align: left;color: #000;letter-spacing: 0.0497539px;">Breed</th>
+                        </tr>
+                        <tr>
+                            <td style="font-family: Noto Sans;font-size: 12px;font-style: normal;font-weight: bold;letter-spacing: 0.049753934144973755px;text-align: left;color: #000;padding-bottom: 40px;"><strong>{{petname}}</strong></td>
+                            <td style="font-family: Noto Sans;font-size: 12px;font-style: normal;font-weight: bold;letter-spacing: 0.049753934144973755px;text-align: left;color: #000;padding-bottom: 40px;"><strong>{{petparentname}}</strong></td>
+                            <td style="font-family: Noto Sans;font-size: 12px;font-style: normal;font-weight: bold;letter-spacing: 0.049753934144973755px;text-align: left;color: #000;padding-bottom: 40px;"><strong>{{patient_details.breed}} ({{species}})</strong></td>
+                        </tr>
+                        <tr>
+                            <th style="padding-bottom: 15px;font-family: Noto Sans, sans-serif;font-size: 12px;font-style: normal;font-weight: 400;text-align: left;color: #000;letter-spacing: 0.0497539px;">Weight</th>
+                            <th style="padding-bottom: 15px;font-family: Noto Sans, sans-serif;font-size: 12px;font-style: normal;font-weight: 400;text-align: left;color: #000;letter-spacing: 0.0497539px;">Veterinarian</th>
+                            <th style="padding-bottom: 15px;font-family: Noto Sans, sans-serif;font-size: 12px;font-style: normal;font-weight: 400;text-align: left;color: #000;letter-spacing: 0.0497539px;">Date</th>
+                        </tr>
+                        <tr>
+                            <td style="font-family: Noto Sans;font-size: 12px;font-style: normal;font-weight: bold;letter-spacing: 0.049753934144973755px;text-align: left;color: #000;padding-bottom: 40px;"><strong>{{weight}}</strong></td>
+                            <td style="font-family: Noto Sans;font-size: 12px;font-style: normal;font-weight: bold;letter-spacing: 0.049753934144973755px;text-align: left;color: #000;padding-bottom: 40px;"><strong>{{doctorname}} ({{regNumber}})</strong></td>
+                            <td style="font-family: Noto Sans;font-size: 12px;font-style: normal;font-weight: bold;letter-spacing: 0.049753934144973755px;text-align: left;color: #000;padding-bottom: 40px;"><strong>{{date}}</strong></td>
+                        </tr>
+                    </table>
+                    <table class="doctor-notes-header" cellspacing="0px" cellpadding="0" width="100%" style="margin:auto;background-color:#F1F1F1; margin-bottom: 20px;">
+                        <tr>
+                            <td style="font-family: Noto Sans;font-style: normal;font-weight: bold;font-size: 14.6774px;letter-spacing: 0.0497539px;color: #000000;padding: 20px 18px;">Doctor's Notes</td>
+                        </tr>
+                    </table>
+                    <table class="doctor-notes" cellspacing="0px" cellpadding="0" width="100%" style="margin:auto;">
+                        {{#if complaints}}
+                        <tr>
+                            <td style="border-bottom-width:1px;border-bottom-color:#726E6E;border-bottom-style:solid;font-family: Noto Sans;font-style: normal;font-weight: bold;font-size: 13.6823px;letter-spacing: 0.0497539px;color: #727171;padding-bottom: 60px;padding-left: 18px;">
+                                Reason for visit
+                               <p>{{complaints}}</p>
+                                {{#if additionalNotes}}
+                                    <p style="white-space: break-spaces;">{{additionalNotes}}</p>
+                                {{/if}}
+                            </td>
+                        </tr>
+                        {{/if}}                       
+                        {{#if diagnosis}}
+                        <tr>
+                            <td style="border-bottom-width:1px;border-bottom-color:#726E6E;border-bottom-style:solid;font-family: Noto Sans;font-style: normal;font-weight: bold;font-size: 13.6823px;letter-spacing: 0.0497539px;color: #727171;padding-bottom: 60px;padding-top: 15px;padding-left: 18px;">
+                                Diagnosis
+                                <p>{{diagnosis}}</p>
+                            </td>
+                        </tr>
+                        {{/if}}
+                        {{#if plan}}
+                        <tr>
+                            <td style="font-family: Noto Sans;font-style: normal;font-weight: bold;font-size: 13.6823px;letter-spacing: 0.0497539px;color: #727171;padding-bottom: 80px;padding-top: 15px;padding-left: 18px;">
+                                Treatment Plan
+                                {{#if procedure}}
+                                    <p>PROCEDURES PERFORMED: {{procedure.procedure}} <br> {{procedure.instruction}}</p>
+                                {{/if}}
+                                {{#if labOrders}}
+                                    <p>LAB ORDERS: {{labOrders.test}} <br>{{labOrders.instruction}}</p>
+                                {{/if}}
+                                 {{#if imagingOrder}}
+                                    <p>IMAGING ORDER: {{imagingOrder.test}} <br> {{imagingOrder.instruction}}</p>
+                                {{/if}}
+                                {{#if inventoryOrders}}
+                                    <p>CONSUMABLES: {{inventoryOrders.name}} <br> {{inventoryOrders.c_quantity}}</p>
+                                {{/if}}
+                                {{#if plan}}
+                                    <p>TREATMENT PLAN: <span style="white-space: break-spaces;"></span>{{plan}}</p>
+                                {{/if}}
+                            </td>
+                        </tr>
+                        {{/if}}
+                    </table>
+                    <table class="doctor-notes-header" cellspacing="0px" cellpadding="0" width="100%" style="margin:auto;background-color:#F1F1F1; margin-bottom: 20px;">
+                        <tr>
+                            <td style="font-family: Noto Sans;font-style: normal;font-weight: bold;font-size: 14.6774px;letter-spacing: 0.0497539px;color: #727171;padding: 20px 18px;">Prescription</td>
+                        </tr>
+                    </table>
+                    <table style="width:100%;">
+                        {{#each meds}}
+                        <tr>
+                            <td style="word-break: break-all;padding: 5px 5px;border: #eee 1px solid;">{{med_name}}</td>
+                            <td style="word-break: break-all;padding: 5px 5px;border: #eee 1px solid;">{{quan}} {{quan_type}}</td>
+                            <td style="word-break: break-all;padding: 5px 5px;border: #eee 1px solid;">{{freq}}
+                              <br>{{#if unitrep}}{{unitrep}}{{/if}}
+                            </td>
+                            <td style="word-break: break-all;padding: 5px 5px;border: #eee 1px solid;">{{dur}} {{dur_type}}</td>
+                            <td style="word-break: break-all;padding: 5px 5px;border: #eee 1px solid;">{{instruction}}</td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
