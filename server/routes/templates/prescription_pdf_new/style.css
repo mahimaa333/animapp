@@ -1,0 +1,188 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto sans', sans-serif;
+    font-size: 16px;
+}
+.pres-con{
+    max-width: 100%;
+}
+.pres-head{
+    display: flex;
+    height: 60px;
+    margin-bottom: 60px;
+    overflow: hidden;
+}
+
+.head-t{
+    display: flex;
+    background-color: #157591;
+    flex: 0 1 80%;
+    padding: 15px 0px 15px 50px;
+    align-items: center;
+}
+.head-t h3{
+    color: #fff;
+    font-size: 24px;
+}
+.head-i{
+    flex: 0 1 30%;
+    padding: 30px 20px 20px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pres-head img{
+    width: 60%;
+    object-fit: contain;
+}
+
+.pres-content{
+    margin: 0 40px;
+    max-width: 100%;
+}
+
+.pres-bar{
+    display: flex;
+    margin: 20px 0;
+}
+.bar-each{
+    flex: 0 1 50%;
+    display: flex;
+    align-items: center;
+}
+
+.bar-name{
+    margin-left: 30px;
+    width: 25%;
+    margin-right: 5px;
+}
+
+.bar-desc{
+    background: #F8FBFC;
+    width: 90%;
+    max-width: 100%;
+    padding: 15px;
+    margin-right: 30px;
+}
+
+.bar-desc p{
+    font-weight: bold;
+}
+
+.pres-bar-doc{
+    margin: 35px 0;
+}
+.pres-bar-doc .bar-name{
+    width: 10%;
+    overflow-wrap: break-word;
+}
+
+.doc-note{
+    padding: 10px 30px ;
+}
+
+.note-title{
+   background: #F1F1F1; 
+   padding: 12px 20px;
+   margin-bottom: 35px;
+}
+.note-cont, .tablets{
+    padding: 0 20px;
+}
+.note-each{
+    display: flex;
+    margin-bottom: 40px;
+}
+.n-each-name{
+    flex: 0 1 30%;
+    color: #727171;
+    font-weight: bold;
+}
+.n-each-desc{
+    flex: 0 1 70%;
+    color: #727171;
+}
+
+.tab{
+    display: flex;
+    margin-bottom: 30px;
+}
+.tab-name{
+    font-weight: bold;
+    color: #727171;
+    flex: 0 1 30%;
+    font-size: 20px;
+}
+.tab-desc{
+    display: flex;
+    background: #F8FBFC;
+    flex: 0 1 70%;
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.tab-desc div{
+    flex: 0 1 33%;
+    font-weight: bold;
+    color: #727171;
+    border-right: 2px solid #DCDBDB;
+}
+.tab-desc div:last-child{
+    border: none;
+}
+.follow{
+    display: flex;
+    justify-content: space-between;
+}
+.doc-days{
+    font-weight: normal;
+}
+
+@media screen and (max-width: 470px) {
+    .pres-content{
+        margin: 0;
+    }
+    p{
+        font-size: 11px;
+    }
+    .bar-name{
+        margin-left: 10px;
+    }
+    .bar-desc{
+        margin-right: 10px;
+    }
+    .doc-note{
+        padding: 10px ;
+    }
+    .note-cont, .tablets{
+        padding: 0 10px;
+    }
+    h3{
+        font-size: 14px;
+    }
+    .tab-name{
+        font-size: 14px;
+    }
+    .tab-desc{
+        font-size: 12px;
+    }
+    .pres-head{
+        height: 50px;
+        margin-bottom: 40px;
+    }
+    .head-t h3{
+        font-size: 15px;
+    }
+    .head-i{
+        padding: 20px;
+
+    }
+    .pres-head img{
+        width: 130%;
+        object-fit: contain;
+    }
+}

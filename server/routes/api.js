@@ -5,7 +5,9 @@ const moment = require('moment');
 const config = require('../config/database');
 const db = require('../config/connections');
 const colors = require('colors');
-const cors = require('cors')
+const cors = require('cors');
+
+
 router.use(cors())
 router.all('*', cors());
 
@@ -15,17 +17,28 @@ const multerS3 = require('multer-s3');
 const multer = require('multer');
 
 
+const SENDGRID_API_KEY = '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';
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(SENDGRID_API_KEY);
+
+
 const BUCKET_NAME = 'prescriptionpdf-072325946506';
 const IAM_USER_KEY = 'AKIARBVXWLSFCDRA6XCV';
 const IAM_USER_SECRET = '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';
 var options = {
-    phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs",
+    // phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs",
+    format: 'A4',
+    orientation: 'portrait',
+    type: "pdf"
 }
 process.env.AWS_ACCESS_KEY_ID = 'AKIARBVXWLSFCDRA6XCV'
 process.env.AWS_SECRET_ACCESS_KEY = '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'
 
 // var sesTransport = require('nodemailer-ses-transport');
 // var smtpPassword = require('aws-smtp-credentials');
+
+
+
 
 const nodemailer = require('nodemailer'),
     path = require('path');
@@ -235,29 +248,61 @@ var tailappTodayNotification = new CronJob({
 tailappTodayNotification.start();
 
 
-let transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // true for 465, false for other ports
-    auth: {
-        type: 'OAuth2',
-        clientId: '033754409283-6m9d5hlnd1ue9716055j6p8a26l47dtr.apps.googleusercontent.com',
-        clientSecret: 'Lbh3bJ90bc-GuzMEfnBtCwH1',
-        refreshToken: '1/IZVgyeB9uHjYcijT4btN6BA7tWhV9v0fbs3Rqb0WwAA',
-        accessToken: 'ya29.GlvuBKiyYjv6z2LUL9c-2dAVLjuIUSrxzfWwTz_tk32mRLaYCuqypzMyz8GvJ3quP_AOU4KfVRsQssfJAzxwkF8su518vLHUEcNELSUYV1liWXG-yGmnUqPolBLI',
-        expires: 1484314697598,
-        user: 'care@animapp.in', // generated ethereal user
-        pass: '4nim4ppc4r30812' // generated ethereal password
-    },
-    tsl: {
-        rejectUnauthorized: false
-    }
-});
+// let transporter = nodemailer.createTransport({
+//     host: 'smtp.gmail.com',
+//     port: 465,
+//     secure: true, // true for 465, false for other ports
+//     auth: {
+//         type: 'OAuth2',
+//         clientId: '033754409283-6m9d5hlnd1ue9716055j6p8a26l47dtr.apps.googleusercontent.com',
+//         clientSecret: 'Lbh3bJ90bc-GuzMEfnBtCwH1',
+//         refreshToken: '1/IZVgyeB9uHjYcijT4btN6BA7tWhV9v0fbs3Rqb0WwAA',
+//         accessToken: 'ya29.GlvuBKiyYjv6z2LUL9c-2dAVLjuIUSrxzfWwTz_tk32mRLaYCuqypzMyz8GvJ3quP_AOU4KfVRsQssfJAzxwkF8su518vLHUEcNELSUYV1liWXG-yGmnUqPolBLI',
+//         expires: 1484314697598,
+//         user: 'care@animapp.in', // generated ethereal user
+//         pass: '4nim4ppc4r30812' // generated ethereal password
+//     },
+//     tsl: {
+//         rejectUnauthorized: false
+//     }
+// });
 
 
-function sendEmail(obj) {
-    return transporter.sendMail(obj);
-}
+// let transporter = nodemailer.createTransport({
+//     host: '	smtp.sendgrid.net',
+//     port: 25,
+//     secure: false,
+//    Username:'4nim4pp',
+//    Password: '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 // true for 465, false for other ports',
+
+//     // auth: {
+//     //     type: 'OAuth2',
+//     //     clientId: '033754409283-6m9d5hlnd1ue9716055j6p8a26l47dtr.apps.googleusercontent.com',
+//     //     clientSecret: 'Lbh3bJ90bc-GuzMEfnBtCwH1',
+//     //     refreshToken: '1/IZVgyeB9uHjYcijT4btN6BA7tWhV9v0fbs3Rqb0WwAA',
+//     //     accessToken: 'ya29.GlvuBKiyYjv6z2LUL9c-2dAVLjuIUSrxzfWwTz_tk32mRLaYCuqypzMyz8GvJ3quP_AOU4KfVRsQssfJAzxwkF8su518vLHUEcNELSUYV1liWXG-yGmnUqPolBLI',
+//     //     expires: 1484314697598,
+//     //     user: 'care@animapp.in', // generated ethereal user
+//     //     pass: '4nim4ppc4r30812' // generated ethereal password
+//     // },
+//     tsl: {
+//         rejectUnauthorized: false
+//     }
+// });
+
+
+
+function sendEmail(obj){
+    // return transporter.sendMail(obj);
+    return sgMail.send(obj);
+  }
+  
+
+
+
+// function sendEmail(obj) {
+//     return transporter.sendMail(obj);
+// }
 
 function loadTemplate(templateName, contexts) {
     let template = new EmailTemplate(path.join(__dirname, 'templates', templateName));
@@ -3131,7 +3176,8 @@ router.post("/mailnotify", (req, res) => {
 
     var prescription_meds = req.body.meds;
     // create reusable transporter object using the default SMTP transport
-
+    var data = req.body;
+    console.log(data, "/////////////////////////////////////");
     let sql = `SELECT * FROM practice WHERE practice_id=?`;
     let query = db.query(sql, req.body.practice_id, (err, result) => {
         let sqlpatient = `SELECT * FROM patient WHERE patient_id=?`;
@@ -3177,12 +3223,13 @@ router.post("/mailnotify", (req, res) => {
                     loadTemplate('prescription_pdf_new', users).then((results) => {
                         console.log('creating pdf')
                         results.map((result) => {
+                            console.log(result);
                             pdf.create(result.email.html, options).toBuffer((err, buffer) => {
                                 // upload to s3
                                 console.log(users[0].petparentname)
                                 s3.putObject({
                                     Bucket: BUCKET_NAME,
-                                    Key: 'prescription/' + users[0].petparentname + '-' + 'prescription.pdf',
+                                    Key: 'prescription/' + users[0].petparentname + '/' + users[0].petname +'/'+ users[0].date + '-' + 'prescription.pdf',
                                     Body: buffer,
                                     ACL: 'public-read',
                                 }, function (err, data) {
@@ -3190,20 +3237,33 @@ router.post("/mailnotify", (req, res) => {
                                         console.log('error uploading file ' + err)
                                     } else {
                                         console.log('file uploaded successfully')
+
+                                        // storing in db
+                                        let pdfData = {
+                                            prescription_pdf_link : 'https://prescriptionpdf-072325946506.s3.ap-south-1.amazonaws.com/prescription/${users[0].petparentname}/${users[0].petname}/${users[0].date}-prescription.pdf'
+                                        }
+                
+                                        let sql = "INSERT prescription_pdf SET ?";
+                                            let query = db.query(sql,pdfData, (err, result) => {
+                                                console.log(result);
+                                                    });
+                        
+                                        // https://prescriptionpdf-072325946506.s3.ap-south-1.amazonaws.com/prescription/${users[0].petparentname}-prescription.pdf
                                         loadTemplate('prescription_new', users).then((results) => {
                                             console.log('sending email')
                                             return Promise.all(results.map((result) => {
                                                 sendEmail({
                                                     to: result.context.email,
-                                                    from: 'alerts@supertails.com',
+                                                    from: '	alerts@supertails.com',
                                                     subject: result.email.subject,
                                                     html: result.email.html,
-                                                    text: result.email.text,
+                                                    text: 'test',
                                                     attachments: [
                                                         {
                                                             filename: 'Prescription.pdf',
-                                                            path: `https://prescriptionpdf-072325946506.s3.ap-south-1.amazonaws.com/prescription/${users[0].petparentname}-prescription.pdf`,
-                                                            contentType: 'application/pdf'
+                                                            // path: `https://prescriptionpdf-072325946506.s3.ap-south-1.amazonaws.com/prescription/${users[0].petparentname}-prescription.pdf`,
+                                                            contentType: 'application/pdf',
+                                                            content:buffer.toString("base64")
                                                         },
                                                     ]
                                                 })
