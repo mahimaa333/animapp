@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -37,8 +37,8 @@
                         <tr>
                             <td style="font-family: Noto Sans;font-size: 12px;font-style: normal;font-weight: bold;letter-spacing: 0.049753934144973755px;text-align: left;color: #000;padding-bottom: 40px;"><strong>{{petname}}</strong></td>
                             <td style="font-family: Noto Sans;font-size: 12px;font-style: normal;font-weight: bold;letter-spacing: 0.049753934144973755px;text-align: left;color: #000;padding-bottom: 40px;"><strong>{{petparentname}}</strong></td>
-                            <td style="font-family: Noto Sans;font-size: 12px;font-style: normal;font-weight: bold;letter-spacing: 0.049753934144973755px;text-align: left;color: #000;padding-bottom: 40px;"><strong>{{patient_details.breed}} ({{species}})</strong></td>
-                        </tr>
+                            <td style="font-family: Noto Sans;font-size: 12px;font-style: normal;font-weight: bold;letter-spacing: 0.049753934144973755px;text-align: left;color: #000;padding-bottom: 40px;"><strong>{{patient_details.breed}} ({{spees}})</strong></td>
+                        </tr>ci
                         <tr>
                             <th style="padding-bottom: 15px;font-family: Noto Sans, sans-serif;font-size: 12px;font-style: normal;font-weight: 400;text-align: left;color: #000;letter-spacing: 0.0497539px;">Weight</th>
                             <th style="padding-bottom: 15px;font-family: Noto Sans, sans-serif;font-size: 12px;font-style: normal;font-weight: 400;text-align: left;color: #000;letter-spacing: 0.0497539px;">Veterinarian</th>
@@ -60,8 +60,8 @@
                         <tr>
                             <td style="border-bottom-width:1px;border-bottom-color:#726E6E;border-bottom-style:solid;font-family: Noto Sans;font-style: normal;font-weight: bold;font-size: 13.6823px;letter-spacing: 0.0497539px;color: #727171;padding-bottom: 60px;padding-left: 18px;">
                                 Reason for visit
-                               <p>{{complaints}}</p>
-                                {{#if additionalNotes}}
+                               <p>tes{{complaints}}</p>
+                                {{#if additionalNo}}
                                     <p style="white-space: break-spaces;">{{additionalNotes}}</p>
                                 {{/if}}
                             </td>
@@ -92,7 +92,7 @@
                                     <p>CONSUMABLES: {{inventoryOrders.name}} <br> {{inventoryOrders.c_quantity}}</p>
                                 {{/if}}
                                 {{#if plan}}
-                                    <p>TREATMENT PLAN: <span style="white-space: break-spaces;"></span>{{plan}}</p>
+                                    <p>TREATMENT PLAN: <span style="white-space: break-spaces;"></span>c</p>
                                 {{/if}}
                             </td>
                         </tr>
@@ -122,4 +122,222 @@
     </div>
 </body>
 
+</html> --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
+</head>
+<body style="
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'Noto sans', sans-serif;
+font-size: 16px;
+text-transform:capitalize;
+">
+    <table border="0" cellpadding="0" cellspacing="0" height="80%" width="100%" id="bodyTable">
+        <tr>
+            <th style="
+            background-color: #157591;
+            width:70%;
+            padding-left: 50px;
+            align-items: start;
+            justify-content: start;
+            text-align: start;
+            color: #fff;font-size: 24px;">Your Pet's Report</th>
+            <th style="
+            width:100%;
+            justify-content: start;
+            padding: 20px 5px 5px 5px;
+          "><img style="width: 100%;" src="https://cdn.shopify.com/s/files/1/0565/8021/0861/files/pet.png?v=1623657885"
+                alt="" /></th>
+        </tr>
+    </table>
+    <table style="
+    margin: 50px auto 30px auto;
+    width: 94%;
+    height: auto;
+    border-collapse: collapse;
+    text-align: center;">
+        <tr>
+            <td >
+            <table style="margin: 0 auto;border-spacing:0 20px;" border="0" cellpadding="0" cellspacing="0"  height="100%" width="90%"  id="bodyTable">
+                <tr style="margin-bottom: 20px;">
+                    <td style="margin-left: 30px; width: 25%; margin-right: 5px" align="start" valign="center">Patient Name</td>
+                    <td style="
+                    background: #f8fbfc;
+                    width: 90%;
+                    max-width: 100%;
+                    padding: 25px;
+                    margin-right: 30px;
+                    font-weight: bold;
+                  " align="start" valign="center">{{petname}}</td>
+                </tr>
+                <tr>
+                    <td style="margin-left: 30px; width: 25%; margin-right: 5px" align="start" valign="center">Species</td>
+                    <td style="
+                    background: #f8fbfc;
+                    width: 90%;
+                    max-width: 100%;
+                    padding: 25px;
+                    margin-right: 30px;
+                    font-weight: bold;
+                  " align="start" valign="center">{{species}}</td>
+                </tr>
+                <tr>
+                    <td style="margin-left: 30px; width: 25%; margin-right: 5px"  align="start" valign="center">Weight</td>
+                    <td style="
+                    background: #f8fbfc;
+                    width: 90%;
+                    max-width: 100%;
+                    padding: 25px;
+                    margin-right: 30px;
+                    font-weight: bold;
+                  " align="start" valign="center">{{weight}}</td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table border="0" style="margin: 0 auto;border-spacing:0 20px;" cellpadding="0" cellspacing="0" height="100%" width="90%" id="bodyTable">
+                <tr> 
+                    <td style="margin-left: 30px; width: 25%; margin-right: 5px" align="start" valign="center">Parent Name</td>
+                    <td style="
+                    background: #f8fbfc;
+                    width: 90%;
+                    max-width: 100%;
+                    padding: 25px;
+                    margin-right: 30px;
+                    font-weight: bold;
+                  " align="start" valign="center">{{petparentname}}</td>
+                </tr>
+                <tr>
+                    <td style="margin-left: 30px; width: 25%; margin-right: 5px;"  align="start" valign="center">Breed</td>
+                    <td style="
+                    background: #f8fbfc;
+                    width: 90%;
+                    max-width: 100%;
+                    padding: 25px;
+                    margin-right: 30px;
+                    font-weight: bold;
+                  " align="start" valign="center">{{patient_details.breed}}</td>
+                </tr>
+                <tr>
+                    <td style="margin-left: 30px; width: 25%; margin-right: 5px" align="start" valign="center">Date</td>
+                    <td style="
+                    background: #f8fbfc;
+                    width: 90%;
+                    max-width: 100%;
+                    padding: 25px;
+                    margin-right: 30px;
+                    font-weight: bold;
+                  " align="start" valign="center">{{date}}</td>
+                </tr>
+            </table>
+        </td>
+        </tr>
+        <tr>
+            <table style="width:90%; margin: 10px auto;">
+                <tr>
+            <td style="margin-left: 30px; width: 12%; margin-right: 5px; padding: 5px" align="start" valign="center">Veterinarian</td>
+                    <td style="
+                    background: #f8fbfc;
+                    width: 90%;
+                    max-width: 100%;
+                    padding: 25px;
+                    margin-right: 30px;
+                    font-weight: bold;
+                  " align="start" valign="center">{{doctorname}}({{regNumber}})
+                  </td>
+                  </tr>
+                </table>
+        </tr>
+    </table>
+    <table style="padding: 14px 10px;background: #f1f1f1;margin: 45px auto 25px auto;" border="0" cellpadding="0" cellspacing="0"  height="100%" width="90%"  id="bodyTable">
+        <tr style="margin-bottom: 20px;">
+            <td style="background: #f1f1f1; padding: 12px 10px; margin-bottom: 35px;vertical-align: text-top;font-size: 18.72px; font-weight: bold" align="start" valign="start">Doctor's note</td>
+        </tr>
+    </table>
+    <table style="margin: 0 auto;" border="0" cellpadding="0" cellspacing="0"  height="100%" width="85%"  id="bodyTable">
+        <tr style="margin-bottom: 20px;">
+            <td style=" width: 30%;color: #727171;padding: 30px 0;vertical-align: text-top; font-weight: bold" align="start" valign="start">Primary Concern :</td>
+            <td style=" width: 70%;color: #727171; padding: 30px 0; " align="start" valign="start">{{complaints}}</td>
+        </tr>
+         {{#if additionalNotes}}
+        <tr>
+            <td style=" width: 30%;color: #727171;padding: 30px 0; vertical-align: text-top; font-weight: bold" align="start" valign="start">Parent's History :</td>
+            <td style=" width: 70%;color: #727171;padding: 30px 0;  " align="start" valign="start">{{additionalNotes}}</td>
+        </tr>
+        {{/if}}
+        <tr>
+            <td style=" width: 30%;color: #727171;padding: 30px 0; vertical-align: text-top; font-weight: bold"  align="start" valign="start">Diagnosis :</td>
+            <td style=" width: 70%;color: #727171; padding: 30px 0; " align="start" valign="start">{{diagnosis}}</td>
+        </tr>
+    </table>
+    {{#if plan}}
+    <table  style="padding: 14px 10px;background: #f1f1f1;margin: 25px auto;" border="0" cellpadding="0" cellspacing="0"  height="100%" width="90%"  id="bodyTable">
+        <tr style="margin-bottom: 20px;">
+            <td style="background: #f1f1f1; padding: 12px 10px; margin-bottom: 35px;vertical-align: text-top;font-size: 18.72px; font-weight: bold" align="start" valign="start">Treatment Plan</td>
+        </tr>
+    </table>
+    <table style="margin: 0 auto;" border="0" cellpadding="0" cellspacing="0"  height="100%" width="85%"  id="bodyTable">
+             {{#if labOrders}}
+        <tr style="margin-bottom: 20px;">
+            <td style=" width: 30%;color: #727171;padding: 30px 0;vertical-align: text-top; font-weight: bold" align="start" valign="start">Lab Orders :
+
+            </td>
+            <td style=" width: 70%;color: #727171; padding: 30px 0; " align="start" valign="start">{{labOrders.test}} <br>{{labOrders.instruction}}</td>
+        </tr>
+        {{/if}}
+        {{#if imagingOrder}}
+        <tr>
+            <td style=" width: 30%;color: #727171;padding: 30px 0; vertical-align: text-top; font-weight: bold" align="start" valign="start">Imaging orders :</td>
+            <td style=" width: 70%;color: #727171;padding: 30px 0;  " align="start" valign="start">{{imagingOrder.test}} <br> {{imagingOrder.instruction}}</td>
+        </tr>
+        {{/if}}
+            {{#if procedure}}
+        <tr>
+            <td style=" width: 30%;color: #727171;padding: 30px 0; vertical-align: text-top; font-weight: bold"  align="start" valign="start">Treatment notes :</td>
+            <td style=" width: 70%;color: #727171; padding: 30px 0; " align="start" valign="start">{{procedure.instruction}}</td>
+        </tr>
+        {{/if}}
+    </table>
+    {{/if}}
+
+    <table style="padding: 14px 10px;background: #f1f1f1;margin: 25px auto;" border="0" cellpadding="0" cellspacing="0"  height="100%" width="90%"  id="bodyTable">
+                {{#if meds}}
+        <tr style="margin-bottom: 20px;">
+            <td style="background: #f1f1f1; padding: 12px 10px; margin-bottom: 35px;vertical-align: text-top;font-size: 18.72px; font-weight: bold" align="start" valign="start">Prescription</td>
+        </tr>
+        {{/if}}
+    </table>
+    <table style="margin: 0 auto;" border="0" cellpadding="0" cellspacing="0"  height="100%" width="85%"  id="bodyTable">
+         {{#if meds}}
+         {{#each meds}}
+        <tr style="margin-bottom: 20px;">
+            <td style=" width: 30%;color: #727171;padding: 30px 0; font-weight: bold;font-size: 20px;" align="start" valign="center">TAB {{med_name}}</td>
+            <td style=" width: 70%;color: #727171; padding: 30px 0; " align="start" valign="center">
+                <table border="0" width="100%" style="background-color: #f8fbfc; padding: 12px;">
+                <tr>
+                    <td style="font-weight: bold; text-align: center;border-right: 2px solid #dcdbdb;">{{quan}} {{quan_type}}</td>
+                    <td style="font-weight: bold; text-align: center;border-right: 2px solid #dcdbdb;">{{freq}}</td>
+                    <td style="font-weight: bold; text-align: center;">{{dur}} {{dur_type}}</td>
+                </tr>
+            </table></td>
+        </tr>
+        <tr>
+            {{#if instruction}}
+            <td style=" width: 30%;color: #727171;padding: 30px 0; vertical-align: text-top; font-weight: bold" align="start" valign="start">Instruction :</td>
+            <td style=" width: 70%;color: #727171;padding: 30px 0;  " align="start" valign="start">{{instruction}}</td>
+            {{/if}}
+        </tr>
+              {{/each}}
+               {{/if}}
+    </table>
+</body>
 </html>
