@@ -20,9 +20,9 @@ const multerS3 = require('multer-s3');
 const multer = require('multer');
 
 
-const BUCKET_NAME = 'animappcareimages';
-const IAM_USER_KEY = 'AKIARBVXWLSFCDRA6XCV';
-const IAM_USER_SECRET = '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';
+const BUCKET_NAME = 'name';
+const IAM_USER_KEY = 'key';
+const IAM_USER_SECRET = 'secret';
 
 var s3 = new AWS.S3({
   accessKeyId: IAM_USER_KEY,
@@ -41,25 +41,6 @@ var uploadpetimage = multer({
     }
   })
 })
-
-let transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true, // true for 465, false for other ports
-  auth: {
-    type: 'OAuth2',
-    clientId: '033754409283-6m9d5hlnd1ue9716055j6p8a26l47dtr.apps.googleusercontent.com',
-    clientSecret: 'Lbh3bJ90bc-GuzMEfnBtCwH1',
-    refreshToken: '1/IZVgyeB9uHjYcijT4btN6BA7tWhV9v0fbs3Rqb0WwAA',
-    accessToken: 'ya29.GlvuBKiyYjv6z2LUL9c-2dAVLjuIUSrxzfWwTz_tk32mRLaYCuqypzMyz8GvJ3quP_AOU4KfVRsQssfJAzxwkF8su518vLHUEcNELSUYV1liWXG-yGmnUqPolBLI',
-    expires: 1484314697598,
-    user: 'care@animapp.in', // generated ethereal user
-    pass: '4nim4ppc4r30812' // generated ethereal password
-  },
-  tsl: {
-    rejectUnauthorized: false
-  }
-});
 
 
 function sendEmail(obj) {
