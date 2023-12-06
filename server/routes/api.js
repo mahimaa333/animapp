@@ -17,25 +17,23 @@ const multerS3 = require('multer-s3');
 const multer = require('multer');
 
 
-const SENDGRID_API_KEY = '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';
+const SENDGRID_API_KEY = 'key';
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(SENDGRID_API_KEY);
 
 
-const BUCKET_NAME = 'prescriptionpdf-072325946506';
-const IAM_USER_KEY = 'AKIARBVXWLSFCDRA6XCV';
-const IAM_USER_SECRET = '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';
+const BUCKET_NAME = 'bucket';
+const IAM_USER_KEY = 'key';
+const IAM_USER_SECRET = 'secret';
 var options = {
     // phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs",
     format: 'A4',
     orientation: 'portrait',
     type: "pdf"
 }
-process.env.AWS_ACCESS_KEY_ID = 'AKIARBVXWLSFCDRA6XCV'
-process.env.AWS_SECRET_ACCESS_KEY = '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'
+process.env.AWS_ACCESS_KEY_ID = 'key'
+process.env.AWS_SECRET_ACCESS_KEY = 'secret'
 
-// var sesTransport = require('nodemailer-ses-transport');
-// var smtpPassword = require('aws-smtp-credentials');
 
 
 
@@ -246,50 +244,6 @@ var tailappTodayNotification = new CronJob({
     timeZone: 'Asia/Kolkata'
 });
 tailappTodayNotification.start();
-
-
-// let transporter = nodemailer.createTransport({
-//     host: 'smtp.gmail.com',
-//     port: 465,
-//     secure: true, // true for 465, false for other ports
-//     auth: {
-//         type: 'OAuth2',
-//         clientId: '033754409283-6m9d5hlnd1ue9716055j6p8a26l47dtr.apps.googleusercontent.com',
-//         clientSecret: 'Lbh3bJ90bc-GuzMEfnBtCwH1',
-//         refreshToken: '1/IZVgyeB9uHjYcijT4btN6BA7tWhV9v0fbs3Rqb0WwAA',
-//         accessToken: 'ya29.GlvuBKiyYjv6z2LUL9c-2dAVLjuIUSrxzfWwTz_tk32mRLaYCuqypzMyz8GvJ3quP_AOU4KfVRsQssfJAzxwkF8su518vLHUEcNELSUYV1liWXG-yGmnUqPolBLI',
-//         expires: 1484314697598,
-//         user: 'care@animapp.in', // generated ethereal user
-//         pass: '4nim4ppc4r30812' // generated ethereal password
-//     },
-//     tsl: {
-//         rejectUnauthorized: false
-//     }
-// });
-
-
-// let transporter = nodemailer.createTransport({
-//     host: '	smtp.sendgrid.net',
-//     port: 25,
-//     secure: false,
-//    Username:'4nim4pp',
-//    Password: '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 // true for 465, false for other ports',
-
-//     // auth: {
-//     //     type: 'OAuth2',
-//     //     clientId: '033754409283-6m9d5hlnd1ue9716055j6p8a26l47dtr.apps.googleusercontent.com',
-//     //     clientSecret: 'Lbh3bJ90bc-GuzMEfnBtCwH1',
-//     //     refreshToken: '1/IZVgyeB9uHjYcijT4btN6BA7tWhV9v0fbs3Rqb0WwAA',
-//     //     accessToken: 'ya29.GlvuBKiyYjv6z2LUL9c-2dAVLjuIUSrxzfWwTz_tk32mRLaYCuqypzMyz8GvJ3quP_AOU4KfVRsQssfJAzxwkF8su518vLHUEcNELSUYV1liWXG-yGmnUqPolBLI',
-//     //     expires: 1484314697598,
-//     //     user: 'care@animapp.in', // generated ethereal user
-//     //     pass: '4nim4ppc4r30812' // generated ethereal password
-//     // },
-//     tsl: {
-//         rejectUnauthorized: false
-//     }
-// });
-
 
 
 function sendEmail(obj){
@@ -857,43 +811,6 @@ router.post('/login', (req, res) => {
     });
 });
 
-
-
-
-// before sub starts
-// router.post('/login', (req,res) => {
-//   var data=req.body;
-//   data.password= crypto.pbkdf2Sync(data.password,'this-is-a-text', 100000,60, 'sha512');
-//   let sql = 'SELECT * FROM user WHERE email_id=? AND password=?';
-//   let query = db.query(sql,[data.email_id,data.password],(err,result, fields) =>{
-//     if(err) throw err;
-//     console.log(result.length);
-//     if(!result.length){
-//       res.json({msg:'error'});
-//     }
-//     else if (result.length === 1){
-//       console.log(result[0].email_verified);
-//       if(result[0].email_verified == 0){
-//         res.json({success:false, msg:'Email Not Verified'});
-//       } else {
-//         var payload = {user_id: result[0].user_id,role: result[0].role,practice_id: result[0].practice_id};
-//         var token = jwt.sign(payload, config.secret, {
-//           expiresIn: 604800 //1 week in second
-//         });
-//         res.json({
-//           success:true,
-//           token: token,
-//         user:{
-//           user_id:result[0].user_id,
-//           practice_id: result[0].practice_id
-//         }});
-//       }
-// 		} else {
-//       res.json({msg:'error'});
-//     }
-//   });
-// });
-// before sub starts
 
 router.post('/forgotpassword', (req, res) => {
     var data = req.body;
