@@ -9,9 +9,9 @@ const multerS3 =  require('multer-s3');
 const multer = require('multer');
 
 
-const BUCKET_NAME = 'animappcareimages';
-const IAM_USER_KEY = 'AKIARBVXWLSFCDRA6XCV';
-const IAM_USER_SECRET = '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';
+const BUCKET_NAME = 'name';
+const IAM_USER_KEY = 'key';
+const IAM_USER_SECRET = 'secret';
 
 router.use(cors()); // CORS error occured for Image result upload
 
