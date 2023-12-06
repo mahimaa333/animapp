@@ -20,7 +20,7 @@ var helmet = require('helmet');
 const socket = require('socket.io');
 var inlineCss = require('inline-css');
 
-const SENDGRID_API_KEY = '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';
+const SENDGRID_API_KEY = 'key';
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(SENDGRID_API_KEY);
 
@@ -63,25 +63,6 @@ const nodemailer = require('nodemailer');
 EmailTemplate = require('email-templates').EmailTemplate;
 
 
-
-let transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true, // true for 465, false for other ports
-  auth: {
-    type: 'OAuth2',
-    clientId: '033754409283-6m9d5hlnd1ue9716055j6p8a26l47dtr.apps.googleusercontent.com',
-    clientSecret: 'Lbh3bJ90bc-GuzMEfnBtCwH1',
-    refreshToken: '1/IZVgyeB9uHjYcijT4btN6BA7tWhV9v0fbs3Rqb0WwAA',
-    accessToken: 'ya29.GlvuBKiyYjv6z2LUL9c-2dAVLjuIUSrxzfWwTz_tk32mRLaYCuqypzMyz8GvJ3quP_AOU4KfVRsQssfJAzxwkF8su518vLHUEcNELSUYV1liWXG-yGmnUqPolBLI',
-    expires: 1484314697598,
-    user: 'care@animapp.in', // generated ethereal user
-    pass: '4nim4ppc4r30812' // generated ethereal password
-  },
-  tsl:{
-    rejectUnauthorized:false
-  }
-});
 
 
 function sendEmail(obj){
@@ -155,14 +136,14 @@ var subscriptionChecker = function (req, res, next) {
                         user_id: user_id,
                         practice_id: practice_id,
                         practice_details: resultpractice[0],
-                        email: 'sagar@animapp.in'
+                        email: 'email'
                       }
                     ];
                     loadTemplate('subendnotifyadmin', users).then((results) => {
                       return Promise.all(results.map((result) => {
                         sendEmail({
                           to:result.context.email,
-                          from: '"AnimApp" <care@animapp.in>',
+                          from: 'email',
                           subject: result.email.subject,
                           html: result.email.html,
                           text:result.email.text,
